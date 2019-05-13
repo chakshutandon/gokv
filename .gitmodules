@@ -1,0 +1,9 @@
+[submodule "src/gokv_core"]
+	path = src/gokv_core
+	url = git@gitlab.com:chakshutandon/gokv_core.git
+[submodule "src/core"]
+	path = src/core
+	url = git@gitlab.com:chakshutandon/gokv_core.git
+[submodule "src/api"]
+	path = src/api
+	url = git@gitlab.com:chakshutandon/gokv_api.git
