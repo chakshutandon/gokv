@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Raft Web Frontend</title>
+  </head>
+  <body>
+    <label for="keyField">Key</label>
+    <input id="keyField" name="keyField" />
+    <label for="valueField">Value</label>
+    <input id="valueField" /><br />
+    <button id="getBtn">Get</button>
+    <button id="setBtn">Set</button><br />
+
+    <div id="out"></div>
+
+    <script>
+      let keyField = document.getElementById("keyField");
+      let valueField = document.getElementById("valueField");
+      let getBtn = document.getElementById("getBtn");
+      let setBtn = document.getElementById("setBtn");
+      let outDiv = document.getElementById("out");
+      getBtn.onclick = () => {
+        outDiv.innerHTML = "loading...";
+        fetch("/get/" + keyField.value)
+          .then(d => d.json())
+          .then(d => {
+            if (d.success) {
+              outDiv.innerHTML = `Successful read: value is ${d.value}`;
+            } else {
+              outDiv.innerHTML = `Failed read: ${d.message}`;
+            }
+          });
+      };
+
+      setBtn.onclick = () => {
+        if (keyField.value != "") {
+          outDiv.innerHTML = "loading...";
+          fetch("/set", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              key: keyField.value,
+              value: valueField.value
+            })
+          })
+            .then(d => d.json())
+            .then(d => {
+              if (d.success) {
+                outDiv.innerHTML = `Successful write.`;
+              } else {
+                outDiv.innerHTML = `Failed write: ${d.message}`;
+              }
+            });
+        }
+      };
+    </script>
+  </body>
+</html>

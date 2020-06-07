@@ -1,0 +1,27 @@
+syntax = "proto3";
+package main;
+
+message ReadKVRequest {
+    string key = 1;
+}
+
+message ReadKVResponse {
+    bool success = 1;
+    string key = 2;
+    string value = 3;
+}
+
+message WriteKVRequest {
+    string key = 1;
+    string value = 2;
+}
+
+message WriteKVResponse {
+    bool success = 1;
+    string key = 2;
+}
+
+service GoKV {
+    rpc ReadKVRPC (ReadKVRequest) returns (ReadKVResponse) {}
+    rpc WriteKVRPC (WriteKVRequest) returns (WriteKVResponse) {}
+}

@@ -1,0 +1,53 @@
+name: gokv-api
+version: 0.1.0.0
+license: BSD3
+author: "Matthew Ramina and Chakshu Tandon"
+maintainer: "matt.ramina@rutgers.edu"
+copyright: "2019 Matthew Ramina"
+
+extra-source-files:
+  - README.md
+  - ChangeLog.md
+  - app/index.html
+
+# Metadata used when publishing your package
+# synopsis:            Short description of your package
+# category:            Web
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description: Please see the README on GitLab at <https://gitlab.com/chakshutandon/GoKV_API>
+
+dependencies:
+  - base >= 4.7 && < 5
+  - scotty
+  - random
+  - text
+  - network
+  - bytestring
+  - aeson
+  - protocol-buffers
+  - protocol-buffers-descriptor
+  - http2-client
+  - http2-client-grpc
+  - lens
+  - proto-lens
+  - proto-lens-runtime
+  # - utf8-string
+
+library:
+  source-dirs:
+    - src
+    - gen
+
+executables:
+  gokv-api-exe:
+    main: Main.hs
+    source-dirs: app
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - gokv-api

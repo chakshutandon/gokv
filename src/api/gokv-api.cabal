@@ -1,0 +1,74 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.31.1.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 951ae0442c12fe5e57f3cb8853e05261899961811b8f502f4b3bba3c9b98d580
+
+name:           gokv-api
+version:        0.1.0.0
+description:    Please see the README on GitLab at <https://gitlab.com/chakshutandon/GoKV_API>
+author:         Matthew Ramina and Chakshu Tandon
+maintainer:     matt.ramina@rutgers.edu
+copyright:      2019 Matthew Ramina
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+    ChangeLog.md
+    app/index.html
+
+library
+  exposed-modules:
+      AppState
+      RemoteCall
+      Proto.Rpc
+      Proto.Rpc_Fields
+  other-modules:
+      Paths_gokv_api
+  hs-source-dirs:
+      src
+      gen
+  build-depends:
+      aeson
+    , base >=4.7 && <5
+    , bytestring
+    , http2-client
+    , http2-client-grpc
+    , lens
+    , network
+    , proto-lens
+    , proto-lens-runtime
+    , protocol-buffers
+    , protocol-buffers-descriptor
+    , random
+    , scotty
+    , text
+  default-language: Haskell2010
+
+executable gokv-api-exe
+  main-is: Main.hs
+  other-modules:
+      Paths_gokv_api
+  hs-source-dirs:
+      app
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      aeson
+    , base >=4.7 && <5
+    , bytestring
+    , gokv-api
+    , http2-client
+    , http2-client-grpc
+    , lens
+    , network
+    , proto-lens
+    , proto-lens-runtime
+    , protocol-buffers
+    , protocol-buffers-descriptor
+    , random
+    , scotty
+    , text
+  default-language: Haskell2010
